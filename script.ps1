@@ -47,7 +47,7 @@ $Attachment = ('\\contoso.com\share\CTXProfiles\Inactive_FSLogix_Profiles_Report
 $Body = 
 ('To Administrator,
  
-Attached, please find the Inactive FSLogix Profiles Report for '+$FormatDate+'. This report contains a list of FSLogix Profiles that have not been accessed for 30 or more days.
+Attached, please find the Inactive FSLogix Profiles Report for '+$FormatDate+'.
  
 PLEASE DO NOT REPLY TO THIS EMAIL.
  
