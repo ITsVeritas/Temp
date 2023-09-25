@@ -1,11 +1,3 @@
-# Check if Modules are loaded and if not, load them
-function Check-LoadedModule
-{
-  Param( [parameter(Mandatory = $true)][alias("Module")][string]$ModuleName)
-  $LoadedModules = Get-Module | Select Name
-  if (!$LoadedModules -like "*$ModuleName*") {Import-Module -Name $ModuleName}
-}
-
 # Import Modules
 Check-LoadedModule ActiveDirectory
 
@@ -46,7 +38,6 @@ ForEach($VHD in $VHDs){
 $TotalSize = (($csv | Measure-Object 'ProfileSize' -Sum).Sum).ToString($_)+"GB"
 $csv = Import-Csv ('\\contoso.com\share\CTXProfiles\Inactive_FSLogix_Profiles_Report_'+$FormatDate+'.csv')
 
-
 # Build Email
 $Recipient = "Administrators@contoso.com"
 $Sender = "FSLogix_Alerts@contoso.com"
@@ -63,3 +54,11 @@ PLEASE DO NOT REPLY TO THIS EMAIL.
 Regards,
 EUC Engineering')
 Send-MailMessage -To $Recipient -From $Sender -Subject $Subject -Body $Body -Attachments $Attachment -SmtpServer $SMTP
+
+# Check if Modules are loaded and if not, load them
+function Check-LoadedModule
+{
+  Param( [parameter(Mandatory = $true)][alias("Module")][string]$ModuleName)
+  $LoadedModules = Get-Module | Select Name
+  if (!$LoadedModules -like "*$ModuleName*") {Import-Module -Name $ModuleName}
+}
