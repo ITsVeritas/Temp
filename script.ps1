@@ -1,3 +1,11 @@
+# Check if Modules are loaded and if not, load them
+function Check-LoadedModule
+{
+  Param( [parameter(Mandatory = $true)][alias("Module")][string]$ModuleName)
+  $LoadedModules = Get-Module | Select Name
+  if (!$LoadedModules -like "*$ModuleName*") {Import-Module -Name $ModuleName}
+}
+
 # Import Modules
 Check-LoadedModule ActiveDirectory
 
@@ -55,11 +63,3 @@ PLEASE DO NOT REPLY TO THIS EMAIL.
 Regards,
 EUC Engineering')
 Send-MailMessage -To $Recipient -From $Sender -Subject $Subject -Body $Body -Attachments $Attachment -SmtpServer $SMTP
-
-# Check if Modules are loaded and if not, load them
-function Check-LoadedModule
-{
-  Param( [parameter(Mandatory = $true)][alias("Module")][string]$ModuleName)
-  $LoadedModules = Get-Module | Select Name
-  if (!$LoadedModules -like "*$ModuleName*") {Import-Module -Name $ModuleName}
-}
