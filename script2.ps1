@@ -1,8 +1,5 @@
 
 #Section 1
-#######################
-# Configure the variables below
-#######################
 # Remote SQL named instance using SQL server login
 $RemoteSQLInstance = "SQLserver.constoso.com"
 ##############################################
@@ -15,9 +12,6 @@ $UseSQLLogin = $FALSE
 
 
 #Section 2
-##############################################
-# Checking to see if the SqlServer module is already installed, if not installing it for the current user
-##############################################
 $SQLModuleCheck = Get-Module -ListAvailable SqlServer
 if ($null -eq $SQLModuleCheck) {
     write-host "SqlServer Module Not Found - Installing"
@@ -26,9 +20,6 @@ if ($null -eq $SQLModuleCheck) {
     # Installing module
     Install-Module -Name SqlServer –Scope CurrentUser -Confirm:$false -AllowClobber
 }
-##############################################
-# Importing the SqlServer module
-##############################################
 Import-Module SqlServer
 
 
